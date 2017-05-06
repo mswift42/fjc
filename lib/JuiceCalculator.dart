@@ -12,9 +12,17 @@ class JuiceCalculator {
 }
 
 class Nicotine {
-  double strength;
+  int basestrength;
+  int  targetstrength;
   pgvg base;
-  Nicotine(this.strength, this.base);
+  Map<pgvg, double> nicjuice;
+  Nicotine(this.basestrength, this.base);
+
+  Map<pgvg, double> nicotinevolume(double targetvolume) {
+    var nicmap = new Map();
+    nicmap[base] = targetvolume / basestrength * targetstrength;
+    return nicmap;
+  }
 
 }
 
