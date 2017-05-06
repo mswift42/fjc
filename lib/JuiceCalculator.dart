@@ -8,19 +8,21 @@ class JuiceCalculator {
   Nicotine nicotine;
   List<Flavour> flavours;
   Map<pgvg, double> pgvgcontents;
+  double targetjuice;
 }
 
 class Nicotine {
-  double concentration;
+  double strength;
   pgvg base;
-  Nicotine(this.concentration, this.base);
+  Nicotine(this.strength, this.base);
+
 }
 
 class Flavour {
   String name;
-  double concentration;
+  double strength;
   pgvg base;
 
-  Flavour(this.name, this.concentration, this.base);
-  Flavour.withPG(this.name, this.concentration);
+  Flavour(this.name, this.strength, this.base);
+  Flavour.withPG(this.name, this.strength);
 }
