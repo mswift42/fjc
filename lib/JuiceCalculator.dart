@@ -16,7 +16,7 @@ class Nicotine {
   int  targetstrength;
   pgvg base;
   Map<pgvg, double> nicjuice;
-  Nicotine(this.basestrength, this.base);
+  Nicotine(this.basestrength, this.targetstrength, this.base);
 
   Map<pgvg, double> nicotinevolume(double targetvolume) {
     var nicmap = new Map();
