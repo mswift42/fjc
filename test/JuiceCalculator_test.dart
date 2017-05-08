@@ -20,5 +20,7 @@ void main() {
     var ni = new Nicotine(72, 3, pgvg.PG);
     var nv = ni.nicotinevolume(50.0);
     expect(nv[pgvg.PG].floor(), 2);
+    var nv1 = ni.nicotinevolume(30.0);
+    expect(nv1[pgvg.PG], 1.25);
   });
 }
