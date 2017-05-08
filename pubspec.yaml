@@ -16,6 +16,6 @@ flutter:
   # the Icons class.
   uses-material-design: true
 
-dev-dependencies:
+dev_dependencies:
   flutter_test:
     sdk: flutter
