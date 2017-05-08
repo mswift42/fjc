@@ -32,5 +32,7 @@ class Flavour {
   pgvg base;
 
   Flavour(this.name, this.strength, this.base);
-  Flavour.withPG(this.name, this.strength);
+  Flavour.withPG(this.name, this.strength) {
+    base = pgvg.PG;
+  }
 }
