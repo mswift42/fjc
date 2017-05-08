@@ -20,7 +20,7 @@ class Nicotine {
 
   Map<pgvg, double> nicotinevolume(double targetvolume) {
     var nicmap = new Map();
-    nicmap[base] = targetvolume / basestrength * targetstrength;
+    nicmap[base] = (targetstrength / basestrength) * targetvolume;
     return nicmap;
   }
 
