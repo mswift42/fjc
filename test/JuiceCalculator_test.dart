@@ -16,4 +16,9 @@ void main() {
     expect(ni.base, pgvg.PG);
     expect(ni.targetstrength, 3);
   });
+  test('nicotinevolume method returns a map of pgvg/double values' , () {
+    var ni = new Nicotine(72, 3, pgvg.PG);
+    var nv = ni.nicotinevolume(50.0);
+    expect(nv[pgvg.PG].floor(), 2);
+  });
 }
