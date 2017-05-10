@@ -32,6 +32,22 @@ class _CalculatorBody extends StatelessWidget {
   }
 }
 
+class _PGVGSliderWidget extends StatefulWidget {
+  final double ratio;
+
+  _PGVGSliderWidget(this.ratio);
+  @override
+  _PGVGSliderState createState() => new _PGVGSliderState(ratio);
+}
+
+class _PGVGSliderState extends State<_PGVGSliderWidget> {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+  }
+}
+
 
 final ThemeData _kTheme = new ThemeData(
   brightness: Brightness.light,
