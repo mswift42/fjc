@@ -27,23 +27,19 @@ class _CalculatorBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Material(
       child: new Column(children: <Widget>[
-        new _PGVGSliderWidget(0.5),
+        new _PGVGSliderWidget(),
       ]),
     );
   }
 }
 
 class _PGVGSliderWidget extends StatefulWidget {
-  final double ratio;
-
-  _PGVGSliderWidget(this.ratio);
   @override
-  _PGVGSliderState createState() => new _PGVGSliderState(ratio);
+  _PGVGSliderState createState() => new _PGVGSliderState();
 }
 
 class _PGVGSliderState extends State<_PGVGSliderWidget> {
-  final double ratio;
-  _PGVGSliderState(this.ratio);
+  double ratio = 0.5;
   @override
   Widget build(BuildContext context) {
     return new Padding(
@@ -53,7 +49,11 @@ class _PGVGSliderState extends State<_PGVGSliderWidget> {
       ),
       child: new Row(children: <Widget>[
         new Slider(
-          onChanged: (ratio) => print(ratio),
+          onChanged: (double value) {
+            setState(() {
+              ratio = value;
+            });
+          },
           label: "PG/VG Ratio",
           value: ratio,
           max: 100.00,
