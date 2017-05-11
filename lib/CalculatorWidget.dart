@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CalculatorWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -12,7 +11,6 @@ class CalculatorWidget extends StatelessWidget {
 }
 
 class CalculatorHome extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -25,10 +23,13 @@ class CalculatorHome extends StatelessWidget {
 }
 
 class _CalculatorBody extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return new Material();
+    return new Material(
+      child: new Column(children: <Widget>[
+        new _PGVGSliderWidget(0.5),
+      ]),
+    );
   }
 }
 
@@ -41,13 +42,28 @@ class _PGVGSliderWidget extends StatefulWidget {
 }
 
 class _PGVGSliderState extends State<_PGVGSliderWidget> {
-
+  final double ratio;
+  _PGVGSliderState(this.ratio);
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    return new Padding(
+      padding: new EdgeInsets.symmetric(
+        horizontal: 8.0,
+        vertical: 2.0,
+      ),
+      child: new Row(children: <Widget>[
+        new Slider(
+          onChanged: (ratio) => print(ratio),
+          label: "PG/VG Ratio",
+          value: ratio,
+          max: 100.00,
+          min: 0.0,
+          divisions: 20,
+        ),
+      ]),
+    );
   }
 }
-
 
 final ThemeData _kTheme = new ThemeData(
   brightness: Brightness.light,
