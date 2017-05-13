@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fjc/JuiceCalculator.dart';
 
 class CalculatorWidget extends StatelessWidget {
   @override
@@ -81,8 +82,7 @@ class SliderLabel extends StatelessWidget {
   }
 }
 
-class NicotineStrengthWidget extends StatelessWidget {
-
+class NicotineWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Column(
@@ -90,6 +90,19 @@ class NicotineStrengthWidget extends StatelessWidget {
 
       ]
     );
+  }
+}
+
+class NicotineBaseStrengthWidget extends StatefulWidget {
+  @override
+  _NicotineBaseStrengthState createState() => new _NicotineBaseStrengthState();
+}
+
+class _NicotineBaseStrengthState extends State<NicotineBaseStrengthWidget> {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
   }
 }
 
