@@ -29,6 +29,7 @@ class _CalculatorBody extends StatelessWidget {
     return new Material(
       child: new Column(children: <Widget>[
         new PGVGSliderWidget(),
+        new NicotineWidget(),
       ]),
     );
   }
@@ -87,7 +88,7 @@ class NicotineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Column(
       children: <Widget>[
-
+        new NicotineBaseStrengthWidget(),
       ]
     );
   }
@@ -111,18 +112,9 @@ class _NicotineBaseStrengthState extends State<NicotineBaseStrengthWidget> {
     return new Container(
       child:
         new Row(
-          children: <Widget>[
-            new Radio<int>(
-              value: 0,
-              groupValue: radiovalue,
-              onChanged: handleRadioChange,
-            ),
-            new Radio<int>(
-              value: 1,
-              groupValue: radiovalue,
-              onChanged: handleRadioChange,
-            ),
-          ],
+          children:
+            basestrengths.map((i) => new _RadioWidget(
+                handleRadioChange, i.toString(), i, i)).toList(),
         ),
     );
   }
