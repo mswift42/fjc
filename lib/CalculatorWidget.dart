@@ -72,7 +72,7 @@ class _PGVGSliderState extends State<PGVGSliderWidget> {
 }
 
 class SliderLabel extends StatelessWidget {
-  String label;
+  final String label;
 
   SliderLabel(this.label);
 
@@ -99,12 +99,58 @@ class NicotineBaseStrengthWidget extends StatefulWidget {
 }
 
 class _NicotineBaseStrengthState extends State<NicotineBaseStrengthWidget> {
+  int radiovalue;
+  List<int> basestrengths = const [0, 18, 50, 72];
 
+  void handleRadioChange(int value) {
+    setState(() => radiovalue = value);
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    return new Container(
+      child:
+        new Row(
+          children: <Widget>[
+            new Radio<int>(
+              value: 0,
+              groupValue: radiovalue,
+              onChanged: handleRadioChange,
+            ),
+            new Radio<int>(
+              value: 1,
+              groupValue: radiovalue,
+              onChanged: handleRadioChange,
+            ),
+          ],
+        ),
+    );
   }
 }
+
+class _RadioWidget extends StatelessWidget {
+  final ValueChanged onChange;
+  final String label;
+  final int radiovalue;
+  final int value;
+
+  _RadioWidget(this.onChange, this.label, this.radiovalue, this.value);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Column(
+      children: <Widget>[
+        new Text(label),
+        new Radio(
+          value: value,
+          groupValue: radiovalue,
+          onChanged: onChange,
+        )
+      ],
+    );
+  }
+}
+
 
 final ThemeData _kTheme = new ThemeData(
   brightness: Brightness.light,
