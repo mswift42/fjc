@@ -86,11 +86,9 @@ class SliderLabel extends StatelessWidget {
 class NicotineWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: <Widget>[
-        new NicotineBaseStrengthWidget(),
-      ]
-    );
+    return new Column(children: <Widget>[
+      new NicotineBaseStrengthWidget(),
+    ]);
   }
 }
 
@@ -103,46 +101,51 @@ class _NicotineBaseStrengthState extends State<NicotineBaseStrengthWidget> {
   int radiovalue;
   List<int> basestrengths = const [0, 18, 50, 72];
 
-  void handleRadioChange(int value) {
-    setState(() => radiovalue = value);
-  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Container(
-      child:
-        new Row(
-          children:
-            basestrengths.map((i) => new _RadioWidget(
-                handleRadioChange, i.toString(), i, i)).toList(),
-        ),
+      child: new Row(
+        children: basestrengths
+            .map((i) =>
+                new _RadioWidget(i.toString(), basestrengths.indexOf(i), i))
+            .toList(),
+      ),
     );
   }
 }
 
-class _RadioWidget extends StatelessWidget {
-  final ValueChanged onChange;
+class _RadioWidget extends StatefulWidget {
   final String label;
-  final int radiovalue;
-  final int value;
+  int radiovalue;
+  int value;
 
-  _RadioWidget(this.onChange, this.label, this.radiovalue, this.value);
+  _RadioWidget(this.label, this.radiovalue, this.value);
 
+  @override
+  _RadioState createState() => new _RadioState();
+}
+
+class _RadioState extends State<_RadioWidget> {
+
+  void handleRadioChange(int value) {
+    setState(() => widget.radiovalue = value);
+  }
   @override
   Widget build(BuildContext context) {
     return new Column(
       children: <Widget>[
-        new Text(label),
-        new Radio(
-          value: value,
-          groupValue: radiovalue,
-          onChanged: onChange,
+        new Text(widget.label),
+        new Radio<int>(
+          value: widget.value,
+          groupValue: widget.radiovalue,
+          onChanged: handleRadioChange,
         )
       ],
     );
   }
 }
-
 
 final ThemeData _kTheme = new ThemeData(
   brightness: Brightness.light,
