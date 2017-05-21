@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:fjc/JuiceCalculator.dart';
 
 class CalculatorWidget extends StatelessWidget {
@@ -60,7 +61,7 @@ class _PGVGSliderState extends State<PGVGSliderWidget> {
                   ratio = value;
                 });
               },
-              label: "PG/VG Ratio",
+              label: ratio.toString(),
               value: ratio,
               max: 100.00,
               min: 0.0,
@@ -92,57 +93,40 @@ class NicotineWidget extends StatelessWidget {
   }
 }
 
-class NicotineBaseStrengthWidget extends StatefulWidget {
-  @override
-  _NicotineBaseStrengthState createState() => new _NicotineBaseStrengthState();
-}
-
-class _NicotineBaseStrengthState extends State<NicotineBaseStrengthWidget> {
-  int radiovalue;
-  List<int> basestrengths = const [0, 18, 50, 72];
-
-
+class NicotineBaseStrengthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Container(
-      child: new Row(
-        children: basestrengths
-            .map((i) =>
-                new _RadioWidget(i.toString(), basestrengths.indexOf(i), i))
-            .toList(),
-      ),
+      child: new _RadioListTileWidget(),
     );
   }
 }
 
-class _RadioWidget extends StatefulWidget {
-  final String label;
-  int radiovalue;
-  int value;
-
-  _RadioWidget(this.label, this.radiovalue, this.value);
-
+class _RadioListTileWidget extends StatefulWidget {
   @override
-  _RadioState createState() => new _RadioState();
+  _RadioListTileState createState() => new _RadioListTileState();
 }
 
-class _RadioState extends State<_RadioWidget> {
+class _RadioListTileState extends State<_RadioListTileWidget> {
+  List<int> basestrengths = const [0, 18, 50, 72];
+  int radiovalue = 72;
 
   void handleRadioChange(int value) {
-    setState(() => widget.radiovalue = value);
+    setState(() => radiovalue = value);
   }
+
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: <Widget>[
-        new Text(widget.label),
-        new Radio<int>(
-          value: widget.value,
-          groupValue: widget.radiovalue,
-          onChanged: handleRadioChange,
-        )
-      ],
+    return new Wrap(
+      children: basestrengths
+          .map((i) => new RadioListTile(
+                value: i,
+                groupValue: radiovalue,
+                onChanged: handleRadioChange,
+                title: new Text(i.toString()),
+              ))
+          .toList(),
     );
   }
 }
