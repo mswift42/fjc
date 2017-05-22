@@ -88,7 +88,8 @@ class NicotineWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Column(children: <Widget>[
-      new NicotineBaseStrengthWidget(),
+      //;new NicotineBaseStrengthWidget(),
+      new _NicotineBaseStrengthRadio(),
     ]);
   }
 }
@@ -127,6 +128,36 @@ class _RadioListTileState extends State<_RadioListTileWidget> {
                 title: new Text(i.toString()),
               ))
           .toList(),
+      );
+  }
+}
+
+class _NicotineBaseStrengthRadio extends StatefulWidget {
+
+  @override
+  _NicotineBaseStrengthState createState() => new _NicotineBaseStrengthState();
+}
+
+class _NicotineBaseStrengthState extends State<_NicotineBaseStrengthRadio> {
+ List<int> basestrengths = const [0, 18, 50, 72];
+  int radiovalue = 72;
+
+  void handleRadioChange(int value) {
+    setState(() => radiovalue = value);
+  }
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Wrap(
+      children: basestrengths.map((i) =>
+      new Column(
+        children: <Widget>[
+          new Text(i.toString()),
+          new Radio(value: i,
+          groupValue: radiovalue,
+          onChanged: handleRadioChange),
+        ]
+      )).toList()
     );
   }
 }
