@@ -52,7 +52,7 @@ class _PGVGSliderState extends State<PGVGSliderWidget> {
       ),
       child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new SliderLabel("PG"),
             new Slider(
@@ -90,48 +90,85 @@ class NicotineWidget extends StatelessWidget {
     return new Column(children: <Widget>[
       //;new NicotineBaseStrengthWidget(),
       new _NicotineBaseStrengthRadio(),
+      new NicotineTargetWidget(),
     ]);
   }
 }
 
-class NicotineBaseStrengthWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Container(
-      child: new _RadioListTileWidget(),
-    );
-  }
-}
-
-
 class _NicotineBaseStrengthRadio extends StatefulWidget {
-
   @override
   _NicotineBaseStrengthState createState() => new _NicotineBaseStrengthState();
 }
 
 class _NicotineBaseStrengthState extends State<_NicotineBaseStrengthRadio> {
- List<int> basestrengths = const [0, 18, 50, 72];
+  final List<int> basestrengths = const [18, 20, 50, 72];
   int radiovalue = 72;
 
   void handleRadioChange(int value) {
     setState(() => radiovalue = value);
   }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Wrap(
-      children: basestrengths.map((i) =>
-      new Column(
-        children: <Widget>[
-          new Text(i.toString()),
-          new Radio(value: i,
-          groupValue: radiovalue,
-          onChanged: handleRadioChange),
-        ]
-      )).toList()
-    );
+        children: basestrengths
+            .map((i) => new Column(children: <Widget>[
+                  new Text(i.toString()),
+                  new Radio(
+                      value: i,
+                      groupValue: radiovalue,
+                      onChanged: handleRadioChange),
+                ]))
+            .toList());
+  }
+}
+
+class NicotineTargetWidget extends StatefulWidget {
+  @override
+  NicotineTargetState createState() => new NicotineTargetState();
+}
+
+class NicotineTargetState extends State<NicotineTargetWidget> {
+  final TextEditingController niccon =
+      new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return new Column(children: <Widget>[
+      new Text("Nicotine Target Strength in mg: "),
+      new Padding(
+        padding: new EdgeInsets.symmetric(
+    horizontal: MediaQuery.of(context).size.width / 4,
+    vertical: 2.0,
+    ),
+          child:
+      new TextField(
+        decoration: new InputDecoration(
+          isDense: true,
+
+        ),
+        controller: niccon,
+        keyboardType: TextInputType.number,
+        onSubmitted: null,
+        onChanged: null,
+      ),
+      ),
+    ]);
+  }
+}
+
+class FlavourWidget extends StatefulWidget {
+
+  FlavourState createState() => new FlavourState();
+}
+
+
+class FlavourState extends State<FlavourWidget> {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
   }
 }
 
