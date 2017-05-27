@@ -130,47 +130,48 @@ class NicotineTargetWidget extends StatefulWidget {
 }
 
 class NicotineTargetState extends State<NicotineTargetWidget> {
-  final TextEditingController niccon =
-      new TextEditingController();
+  final TextEditingController niccon = new TextEditingController();
   int nictarget = 0;
+  bool open = false;
   Widget _targetText(int target) {
-    return new Container(
-      child: new Text(target.toString()),
+    return new InkWell(
+      onTap: () {
+        open = !open;
+      },
+      child: new Container(
+        child: new Text(target.toString()),
+      ),
     );
-}
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Column(children: <Widget>[
       new Text("Nicotine Target Strength in mg: "),
       new Padding(
         padding: new EdgeInsets.symmetric(
-    horizontal: MediaQuery.of(context).size.width / 4,
-    vertical: 2.0,
-    ),
-          child:
-      new TextField(
-        decoration: new InputDecoration(
-          isDense: true,
-
+          horizontal: MediaQuery.of(context).size.width / 4,
+          vertical: 2.0,
         ),
-        controller: niccon,
-        keyboardType: TextInputType.number,
-        onSubmitted: null,
-        onChanged: null,
-      ),
+        child: new TextField(
+          decoration: new InputDecoration(
+            isDense: true,
+          ),
+          controller: niccon,
+          keyboardType: TextInputType.number,
+          onSubmitted: null,
+          onChanged: null,
+        ),
       ),
     ]);
   }
 }
 
 class FlavourWidget extends StatefulWidget {
-
   FlavourState createState() => new FlavourState();
 }
 
-
 class FlavourState extends State<FlavourWidget> {
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
