@@ -144,6 +144,18 @@ class NicotineTargetState extends State<NicotineTargetWidget> {
     );
   }
 
+  Widget _inputField() {
+        return new TextField(
+          decoration: new InputDecoration(
+            isDense: true,
+          ),
+          controller: niccon,
+          keyboardType: TextInputType.number,
+          onSubmitted: null,
+          onChanged: null,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Column(children: <Widget>[
