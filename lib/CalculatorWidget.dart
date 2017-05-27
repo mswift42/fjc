@@ -132,7 +132,12 @@ class NicotineTargetWidget extends StatefulWidget {
 class NicotineTargetState extends State<NicotineTargetWidget> {
   final TextEditingController niccon =
       new TextEditingController();
-
+  int nictarget = 0;
+  Widget _targetText(int target) {
+    return new Container(
+      child: new Text(target.toString()),
+    );
+}
   @override
   Widget build(BuildContext context) {
     return new Column(children: <Widget>[
