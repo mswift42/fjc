@@ -13,7 +13,7 @@ class JuiceCalculator {
 
 class Nicotine {
   int basestrength;
-  int  targetstrength;
+  double  targetstrength;
   pgvg base;
   Map<pgvg, double> nicjuice;
   Nicotine(this.basestrength, this.targetstrength, this.base);
